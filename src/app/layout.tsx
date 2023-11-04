@@ -2,7 +2,8 @@ import { Nunito, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import clsx from "clsx";
 import type { Metadata, ResolvingMetadata } from 'next'
-import { createClient } from "@/prismicio";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -17,21 +18,6 @@ const nunitoSans = Nunito_Sans({
 });
 
 
-export async function generateMetadata(): Promise<Metadata> {
-
-  const client = createClient()
-
-  const page =  await client.getSingle("settings")
-  
-  return {
-    title: page.data.site_title || "Flowrise",
-    description: page.data.meta_desc || "flowrise is the best app",
-   openGraph: {
-    images: [page.data.og_image.url || ""]
-   }
-  }
-}
-
 export default function RootLayout({
   children,
 }: {
@@ -40,7 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={clsx(nunito.variable, nunitoSans.variable)}>
       <body>
-        <div>{children}</div>
+        <div>
+          
+          <Header />
+          {children}<Footer />
+          </div>
       </body>
     </html>
   );
