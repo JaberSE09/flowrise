@@ -11,7 +11,7 @@ const Footer  = async () => {
   return (
    <footer>
       <Link href={"/"}>{settings.data.site_title}</Link>
-      <p>Copyright &copy; {new Date().getFullYear()}</p>
+      <p>{settings.data.site_title} Copyright &copy; {new Date().getFullYear()} Sajid Jaber</p>
       <ul> 
           {settings.data.navigation.map(({ label, link }) => (
             <li key={label}>
