@@ -11,6 +11,17 @@ type HomepageDocumentDataSlicesSlice = never;
  */
 interface HomepageDocumentData {
   /**
+   * Title field in *homepage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
    * Slice Zone field in *homepage*
    *
    * - **Field Type**: Slice Zone
@@ -74,16 +85,6 @@ export type HomepageDocument<Lang extends string = string> =
  */
 export interface SettingsDocumentDataNavigationItem {
   /**
-   * Link field in *Settings → Navigation*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: settings.navigation[].link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  link: prismic.LinkField;
-
-  /**
    * Label field in *Settings → Navigation*
    *
    * - **Field Type**: Text
@@ -92,9 +93,17 @@ export interface SettingsDocumentDataNavigationItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   label: prismic.KeyTextField;
-}
 
-type SettingsDocumentDataSlicesSlice = never;
+  /**
+   * Link field in *Settings → Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.navigation[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
 
 /**
  * Content for Settings documents
@@ -112,15 +121,15 @@ interface SettingsDocumentData {
   site_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *Settings*
+   * Site Description field in *Settings*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: settings.meta_desc
+   * - **API ID Path**: settings.site_description
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  meta_desc: prismic.KeyTextField;
+  site_description: prismic.KeyTextField;
 
   /**
    * OG Image field in *Settings*
@@ -143,48 +152,6 @@ interface SettingsDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   navigation: prismic.GroupField<Simplify<SettingsDocumentDataNavigationItem>>;
-
-  /**
-   * Slice Zone field in *Settings*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: settings.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<SettingsDocumentDataSlicesSlice> /**
-   * Meta Description field in *Settings*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: settings.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Settings*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: settings.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *Settings*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: settings.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
 }
 
 /**
@@ -221,7 +188,6 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
-      SettingsDocumentDataSlicesSlice,
       AllDocumentTypes,
     };
   }
